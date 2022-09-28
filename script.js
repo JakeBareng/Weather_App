@@ -11,9 +11,7 @@ const description = document.querySelector('.description > p')
 async function weatherAPI(city) {
     let api = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=08703343fa371f1d401a54461da661b7`
     let response = await fetch(api, {mode: 'cors'});
-    let data = await response.json();
-    let processedData = processJSON(data);
-    display(processedData);
+    return await response.json();
 }
 
 function processJSON(data) {
@@ -40,16 +38,21 @@ function clearDisplay() {
 function display(data) {
     city.innerText = data.city
     country.innerText = data.countryName
-    description.innerText = '"' + data.description + '"'
-    feelsLike.innerText = data.feelsLike
-    humidity.innerText = data.humidity +"%"
-    temperature.innerText = data.temperature
-    wind.innerText = data.wind
+    description.innerText = 'Description: "' + data.description + '"'
+    feelsLike.innerText = "feels like: "+ data.feelsLike
+    humidity.innerText = "Humidity: " + data.humidity +"%"
+    temperature.innerText =  data.temperature
+    wind.innerText = "wind: "+ data.wind + " m/s"
 }
 
-function eventHandlerSearch() {
-    let city = searchBar.value
-    weatherAPI(city)
+async function eventHandlerSearch() {
+    try {
+        let city = searchBar.value
+        let data = await weatherAPI(city)
+        let processedData = processJSON(data);
+        clearDisplay();
+        display(processedData);
+    } catch (e) {}
 }
 
 document.addEventListener('keydown', (e) => {
