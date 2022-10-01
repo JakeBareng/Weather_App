@@ -26,6 +26,9 @@ function processJSON(data) {
 }
 
 function clearDisplay() {
+    document.querySelectorAll('.data-svg').forEach((e) => {
+        e.style.display = "none"
+    })
     city.innerText = ""
     country.innerText = ""
     description.innerText = ""
@@ -36,6 +39,9 @@ function clearDisplay() {
 }
 
 function display(data) {
+    document.querySelectorAll('.data-svg').forEach((e) => {
+        e.style.display = "inline-block"
+    })
     city.innerText = data.city
     country.innerText = data.countryName
     description.innerText = 'Description: "' + data.description + '"'
@@ -52,7 +58,10 @@ async function eventHandlerSearch() {
         let processedData = processJSON(data);
         clearDisplay();
         display(processedData);
-    } catch (e) {}
+    } catch (e) {
+        clearDisplay();
+        
+    }
 }
 
 document.addEventListener('keydown', (e) => {

@@ -9,9 +9,6 @@ html {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    /* IE */
-    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../img/main_bg_2.jpg', sizingMethod='scale');
-    -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../img/main_bg_2.jpg', sizingMethod='scale')";
 }
 
 /* main display */
@@ -23,6 +20,7 @@ html {
     border-radius: 20px;
     box-shadow: 6px 8px 3px rgb(58 19 52 / 67%);
     margin: auto;
+    margin-top: 15vh;
 }
 /* heading */
 .header{
@@ -57,7 +55,11 @@ h4{
 .temperature {
     width: 50%;
 }
-
+.temperature > p {
+    width: fit-content;
+    display: inline-block;
+    font-size: 2.6em;
+}
 /* subdata */
 .sub-data {
     width: 50%;
@@ -70,8 +72,29 @@ h4{
     display: flex;
     align-items: center;
     gap: 10px;
+    justify-content: space-between;
 }
+
+/* svg */
 .data-svg{
-    display: inline;
     width: 20px;
+    display: none;
+}
+
+/* search bar */
+.search-bar{
+    width: 330px;
+    height: 30px;
+    margin: auto;
+    margin-top: 35px;
+}
+.search-bar > input {
+    visibility: visible;
+    border: none;
+    border-radius: 30px;
+    height: 100%;
+    outline: none;
+    padding-inline-end: 12px;
+    padding-inline-start: 12px;
+    width: 60%;
 }
