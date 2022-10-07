@@ -11,6 +11,7 @@ const description = document.querySelector('.description > p')
 async function weatherAPI(city) {
     let api = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=08703343fa371f1d401a54461da661b7`
     let response = await fetch(api, {mode: 'cors'});
+    if (response.cod == '404') throw new Error("invalid city")
     return await response.json();
 }
 
@@ -55,12 +56,11 @@ async function eventHandlerSearch() {
     try {
         let city = searchBar.value
         let data = await weatherAPI(city)
-        let processedData = processJSON(data);
+        let processedData = processJSON(data)
         clearDisplay();
         display(processedData);
     } catch (e) {
-        clearDisplay();
-        
+        console.log(e);
     }
 }
 
