@@ -98,3 +98,20 @@ h4{
     padding-inline-start: 12px;
     width: 60%;
 }
+
+
+/* error */
+.error {
+    background-color: #ff7474;
+    width: fit-content;
+    padding: 5px;
+    border-radius: 5px;
+    position: relative;
+    opacity: 0;
+    transform: translate(432px, 0px);
+    transition: 180ms ease-in;
+}
+.error-active {
+    opacity: 1;
+    transform: translate(17px, 0px);
+}

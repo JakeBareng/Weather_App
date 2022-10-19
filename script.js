@@ -6,6 +6,7 @@ const wind = document.querySelector('.wind > p')
 const country = document.querySelector('.country > h4')
 const city = document.querySelector('.city > h3')
 const description = document.querySelector('.description > p')
+const errorDiv = document.querySelector('.error')
 
 
 async function weatherAPI(city) {
@@ -52,15 +53,24 @@ function display(data) {
     wind.innerText = "wind: "+ data.wind + " m/s"
 }
 
+function removeError() {
+    errorDiv.classList.remove('error-active')
+}
+
+function displayError() {
+    errorDiv.classList.add('error-active')
+}
+
 async function eventHandlerSearch() {
     try {
+        removeError()
         let city = searchBar.value
         let data = await weatherAPI(city)
         let processedData = processJSON(data)
-        clearDisplay();
-        display(processedData);
+        clearDisplay()
+        display(processedData)
     } catch (e) {
-        console.log(e);
+        displayError()
     }
 }
 
